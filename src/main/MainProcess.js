@@ -39,8 +39,8 @@ module.exports = class MainProcess {
 
   createWindow = () => {
     const mainWindow = new BrowserWindow({
-      width: 800,
-      height: 600,
+      width: 650,
+      height: 800,
       webPreferences: { 
         nodeIntegration: true,
         preload: path.join(__dirname, 'preload.js')

@@ -5,15 +5,30 @@
     <meta charset="UTF-8">
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline';">
-    <title>Hello World!</title>
+    <title>MQTT to MIDI</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../../node_modules/material-design-lite/material.min.css">
+    <script src="../../node_modules/material-design-lite/material.min.js"></script>
+    <line rel="stylesheet" href="../../node_modules/material-icons-font/material-icons-font.css">
   </head>
   <body>
-    <div id="root"></div>
-     <p id="topic">Topic: <span>info</span></p>
-     <p id="message">Message: <span>msg</span></p>
-     <!-- Title: <input id="title"/>
-    <button id="btn" type="button">Set</button> -->
+
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+          <span class="mdl-layout__title">MQTT to MIDI</span>
+        </div>
+      </header>
+      <div class="mdl-layout__content mdl-grid">
+        <textarea class="mdl-cell mdl-cell--12-col" name="comm-log" id="comm-log" cols="100" rows="25"></textarea>
+        <div class="controls mdl-cell mdl-cell--12-col">
+          <button id="connect" class="mdl-button mdl-js-button">Connect</button>
+          <button id="disconnect" class="mdl-button mdl-js-button">Disconnect</button>
+          <button id="send" class="mdl-button mdl-js-button">Send</button>
+          <button id="clear" class="mdl-button mdl-js-button">Clear</button>
+        </div>
+      </div>
+    </div>
     <script src="../renderer/renderer.js"></script>
   </body>
 </html>

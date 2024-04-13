@@ -1,5 +1,7 @@
 'use strict';
 
+// const { Text } = require('material');
+
 const topicSpan = document.querySelector('#topic > span');
 const messageSpan = document.querySelector('#message > span');
 
