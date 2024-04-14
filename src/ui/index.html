@@ -13,19 +13,30 @@
   </head>
   <body>
 
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <div class="mdl-layout mdl-layout--fixed-header">
       <header class="mdl-layout__header">
         <div class="mdl-layout__header-row">
           <span class="mdl-layout__title">MQTT to MIDI</span>
         </div>
       </header>
-      <div class="mdl-layout__content mdl-grid">
-        <textarea class="mdl-cell mdl-cell--12-col" name="comm-log" id="comm-log" cols="100" rows="25"></textarea>
-        <div class="controls mdl-cell mdl-cell--12-col">
-          <button id="connect" class="mdl-button mdl-js-button">Connect</button>
-          <button id="disconnect" class="mdl-button mdl-js-button">Disconnect</button>
-          <button id="send" class="mdl-button mdl-js-button">Send</button>
-          <button id="clear" class="mdl-button mdl-js-button">Clear</button>
+      <div class="mdl-layout__content">
+        <div class="mdl-grid">
+          <div class="mac-address mdl-cell mdl-cell--12-col"><b>MAC Address: </b><span id="address">...</span></div>
+          <textarea class="mdl-cell mdl-cell--12-col" name="comm-log" id="log" cols="100" rows="25"></textarea>
+          <div class="mdl-cell mdl-cell--12-col">
+            <button id="clear" class="mdl-button mdl-js-button mdl-button--raised">Clear</button>
+          </div>  
+        
+          <nav id="mqtt-ui" class="mqtt mdl-navigation mdl-cell mdl-cell--12-col">
+            <div class="mdl-navigation__link"><button id="mqtt-connect" class="mdl-button mdl-js-button">MQTT Connect</button></div>
+            <div class="mdl-navigation__link"><button id="mqtt-disconnect" class="mdl-button mdl-js-button">MQTT Disconnect</button></div>
+            <div class="mdl-navigation__link"><button id="mqtt-send" class="mdl-button mdl-js-button">MQTT Send</button></div>
+          </nav>
+          <nav id="midi-ui" class="midi mdl-navigation mdl-cell mdl-cell--12-col">
+            <div class="mdl-navigation__link"><button id="midi-connect" class="mdl-button mdl-js-button">MIDI Connect</button></div>
+            <div class="mdl-navigation__link"><button id="midi-disconnect" class="mdl-button mdl-js-button">MIDI Disconnect</button></div>
+            <div class="mdl-navigation__link"><button id="midi-send" class="mdl-button mdl-js-button">MIDI Send</button></div>
+          </nav>
         </div>
       </div>
     </div>
