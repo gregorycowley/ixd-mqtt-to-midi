@@ -7,7 +7,7 @@ jobs:
     steps:
     - uses: ConorMacBride/install-package@v1
       with:
-        apt: libopenjp2-7
+        apt: libasound2-dev
     - uses: actions/checkout@v4
     - uses: actions/setup-node@master
       with:
