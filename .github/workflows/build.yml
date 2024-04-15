@@ -21,8 +21,9 @@ jobs:
     - uses: actions/setup-node@master
       with:
         node-version: 20
-    - name: Install Python Tools
-      uses: BrandonLWhite/pipx-install-action@latest
+    - uses: MatteoH2O1999/setup-python@v3
+      with:
+        python-version: '3.6'
     - name: install dependencies
       run: npm install
     - name: build
