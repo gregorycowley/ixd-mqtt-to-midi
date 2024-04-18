@@ -1,6 +1,6 @@
 {
   "name": "ixd-mqtt-to-midi",
-  "version": "0.2.1",
+  "version": "0.2.0-alpha",
   "description": "A simple Electron app to convert MQTT messages to MIDI messages",
   "main": "src/main/main.js",
   "type": "commonjs",
@@ -20,6 +20,7 @@
   "devDependencies": {
     "@electron-forge/cli": "^7.3.0",
     "@electron-forge/maker-deb": "^7.3.0",
+    "@electron-forge/maker-dmg": "^7.4.0",
     "@electron-forge/maker-rpm": "^7.3.0",
     "@electron-forge/maker-squirrel": "^7.3.0",
     "@electron-forge/maker-zip": "^7.3.0",
