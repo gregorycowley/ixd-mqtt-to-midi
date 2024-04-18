@@ -10,18 +10,20 @@ const { app, BrowserWindow, ipcMain } = require('electron');
 const MqttConnect = require('../connect/MqttConnect');
 const MidiConnect = require('../midi/MidiConnect');
 const MqttParse = require('../connect/MqttParse');
-const { enableReload } = require('../util/development.js');
+
 const { first, all } = require('macaddress-local-machine');
 const path = require('node:path');
 const macAddress = first();
+require('dotenv').config();
+if ( process.env.MODE == 'development' ) {
+  const { enableReload } = require('../util/development.js')();
+}
 
 module.exports = class MainProcess {
   mqttConnection = null;
   midiConnect = null;
 
   constructor() {
-    console.log('MainProcess constructor');
-
     app.on('ready', this.onReady);
     app.on('window-all-closed', this.onWindowAllClosed);
     app.on('will-quit', this.onWillQuit);
@@ -35,8 +37,6 @@ module.exports = class MainProcess {
     this.mqttConnection = new MqttConnect();
     this.mqttParse = new MqttParse();
     this.mqttParse.on('found-midi-message', this.onMQTTtoMIDI);
-
-    enableReload();
   }
 
   onWindowAllClosed = () => {
@@ -65,7 +65,12 @@ module.exports = class MainProcess {
       }
     });
     mainWindow.loadFile('src/ui/index.html');
-    mainWindow.webContents.openDevTools();
+
+    if (process.env.MODE == 'development'){
+      mainWindow.webContents.openDevTools();
+    } else {
+      mainWindow.setResizable(false);
+    }
 
     setTimeout(() => {
       mainWindow.webContents.send('mac-address', macAddress.macAddr);

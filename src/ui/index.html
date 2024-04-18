@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="../../node_modules/material-design-lite/material.min.css">
     <script src="../../node_modules/material-design-lite/material.min.js"></script>
+    <!-- <script type="module">
+      import MidiControls from '../renderer/midi-controls.js';
+    </script> -->
     <line rel="stylesheet" href="../../node_modules/material-icons-font/material-icons-font.css">
   </head>
   <body>
@@ -28,12 +31,12 @@
           </div>  
         
           <nav id="mqtt-ui" class="mqtt mdl-navigation mdl-cell mdl-cell--12-col">
-            <div class="mdl-navigation__link"><button id="mqtt-connect" class="mdl-button mdl-js-button">MQTT Connect</button></div>
+            <div class="mdl-navigation__link"><button id="mqtt-connect" class="mdl-button--raised mdl-button--accent mdl-button mdl-js-button">MQTT Connect</button></div>
             <div class="mdl-navigation__link"><button id="mqtt-disconnect" class="mdl-button mdl-js-button">MQTT Disconnect</button></div>
             <div class="mdl-navigation__link"><button id="mqtt-send" class="mdl-button mdl-js-button">MQTT Send</button></div>
           </nav>
           <nav id="midi-ui" class="midi mdl-navigation mdl-cell mdl-cell--12-col">
-            <div class="mdl-navigation__link"><button id="midi-connect" class="mdl-button mdl-js-button">MIDI Connect</button></div>
+            <div class="mdl-navigation__link"><button id="midi-connect" class="mdl-button--raised  mdl-button--accent mdl-button mdl-js-button">MIDI Connect</button></div>
             <div class="mdl-navigation__link"><button id="midi-disconnect" class="mdl-button mdl-js-button">MIDI Disconnect</button></div>
             <div class="mdl-navigation__link"><button id="midi-send" class="mdl-button mdl-js-button">MIDI Send</button></div>
           </nav>

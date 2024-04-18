@@ -10,7 +10,8 @@ module.exports = {
     {
       name: '@electron-forge/maker-squirrel',
       config: {
-        bin: 'Electron Starter'
+        iconUrl: 'src/icons/icon.ico',
+        setupIcon: 'src/icons/icon.ico'
       }
     },
     {
@@ -20,23 +21,15 @@ module.exports = {
     {
       name: '@electron-forge/maker-dmg',
       config: {
-        options: {
-          icon: path.join(process.cwd(), 'main', 'build', 'icon.png'),
-        },
-      },
+        icon: 'src/icons/icon.icns'
+      }
     },
     {
       name: '@electron-forge/maker-deb',
       config: {
         options: {
-          icon: path.join(process.cwd(), 'main', 'build', 'icon.png'),
-        },
-      }
-    },
-    {
-      name: '@electron-forge/maker-rpm',
-      config: {
-        icon: path.join(process.cwd(), 'main', 'build', 'icon.png'),
+          icon: 'src/icons/icon.png'
+        }
       }
     },
   ],
