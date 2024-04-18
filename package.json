@@ -10,6 +10,7 @@
     "lint": "eslint src/**/*.js src/**/*.jsx",
     "test": "mocha",
     "package": "electron-forge package",
+    "publish": "electron-forge publish",
     "make": "electron-forge make"
   },
   "author": "Gregory Cowley",
@@ -45,7 +46,7 @@
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "electron_quick_start"
+            "name": "ixd-mqtt2midi"
           }
         },
         {
