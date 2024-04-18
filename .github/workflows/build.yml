@@ -69,7 +69,7 @@ jobs:
           prerelease: true
           tag: "latest"
           token: ${{ secrets.GITHUB_TOKEN }}
-          artifacts: "*.zip"
+          artifacts: "**/*.zip"
       - name: Summary
         run: |
           cat <<EOF >> $GITHUB_STEP_SUMMARY
