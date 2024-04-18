@@ -43,9 +43,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm run publish
-
   release:
-    if: ${{github.repository_owner == 'gregorycowley' && github.ref_name == 'main'}}
+    # if: ${{github.repository_owner == 'gregorycowley' && github.ref_name == 'main'}}
     name: Upload Latest Build
     needs: build
     runs-on: macos-latest
