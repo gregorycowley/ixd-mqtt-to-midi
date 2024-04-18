@@ -1,39 +1,76 @@
-name: Build
-on: [push, pull_request]
+name: Build and Release
+
+on: [push]
+push:
+    branches:
+      - main
+  workflow_dispatch:
 
 jobs:
-  build_on_linux:
-    runs-on: ubuntu-latest
+  build:
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest]
+        architecture: [x64, arm64]
+        exclude:
+          - os: windows-latest
+            architecture: arm64
+        include:
+          - os: macos-latest
+            architecture: x64
+            target: mac
+          - os: macos-latest
+            architecture: arm64
+            target: mac-arm
+          - os: windows-latest
+            architecture: x64
+            target: win
+    runs-on: ${{ matrix.os }}
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-node@master
-      with:
-        node-version: 20
-    - name: install dependencies
-      run: npm install
-    - name: build
-      run: npm run make
+      - name: Github checkout
+        uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - run: npm i
+      - if: matrix.os == 'macos-latest'
+        run: npm install -g appdmg
+      - name: Publish app
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npm run publish
 
-  build_on_mac:
+  release:
+    if: ${{github.repository_owner == 'gregorycowley' && github.ref_name == 'main'}}
+    name: Upload Latest Build
+    needs: build
     runs-on: macos-latest
+    permissions:
+      contents: write
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-node@master
-      with:
-        node-version: 20
-    - name: install dependencies
-      run: npm install
-    - name: build
-      run: npm run make
-
-  build_on_win:
-    runs-on: windows-latest
-    steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-node@master
-      with:
-        node-version: 20
-    - name: install dependencies
-      run: npm install
-    - name: build
-      run: npm run make
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: "artifact-*"
+          merge-multiple: true
+      - uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true
+          omitName: true
+          omitBody: true
+          omitBodyDuringUpdate: true
+          prerelease: true
+          tag: "latest"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          artifacts: "*.tar.gz"
+      - name: Summary
+        run: |
+          cat <<EOF >> $GITHUB_STEP_SUMMARY
+          # Latest Build Complete!
+          
+          For the public download links of these build artifacts, please see:
+           <https://github.com/gregorycowley/ixd-mqtt-to-midi/releases/tag/latest>
+          EOF

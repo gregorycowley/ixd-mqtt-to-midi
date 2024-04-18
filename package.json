@@ -1,6 +1,6 @@
 {
   "name": "ixd-mqtt-to-midi",
-  "version": "0.2.0-alpha",
+  "version": "0.2.1",
   "description": "A simple Electron app to convert MQTT messages to MIDI messages",
   "main": "src/main/main.js",
   "type": "commonjs",
