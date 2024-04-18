@@ -1,7 +1,7 @@
 name: Build and Release
 
-on: [push]
-push:
+on:
+  push:
     branches:
       - main
   workflow_dispatch:
@@ -43,9 +43,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm run publish
-
   release:
-    if: ${{github.repository_owner == 'gregorycowley' && github.ref_name == 'main'}}
+    # if: ${{github.repository_owner == 'gregorycowley' && github.ref_name == 'main'}}
     name: Upload Latest Build
     needs: build
     runs-on: macos-latest
@@ -65,7 +64,7 @@ jobs:
           prerelease: true
           tag: "latest"
           token: ${{ secrets.GITHUB_TOKEN }}
-          artifacts: "*.tar.gz"
+          artifacts: "*.zip"
       - name: Summary
         run: |
           cat <<EOF >> $GITHUB_STEP_SUMMARY
