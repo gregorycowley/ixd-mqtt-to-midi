@@ -43,6 +43,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm run publish
+      - name: Upload arifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: artifact-${{ matrix.os }}-${{ matrix.architecture }}
+          path: out/make
   release:
     # if: ${{github.repository_owner == 'gregorycowley' && github.ref_name == 'main'}}
     name: Upload Latest Build
