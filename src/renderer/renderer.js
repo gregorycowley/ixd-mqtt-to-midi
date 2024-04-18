@@ -63,7 +63,7 @@ const connectStatus = (button, status) => {
 // Message Handlers
 const mainMessageHandlerSetup =  () => {
   window.electronAPI.onMQTTMessage((messageObj) => {
-    const message = messageObj.strMessage
+    const message = messageObj.strMessage;
     // console.log('onMQTTMessage', Object.keys(message));
     if ( message.indexOf('Connected') > -1 ) {
       connectionState.mqtt.connected = true;
