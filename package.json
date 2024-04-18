@@ -1,6 +1,6 @@
 {
   "name": "ixd-mqtt-to-midi",
-  "version": "0.2.0-alpha",
+  "version": "0.2.2",
   "description": "A simple Electron app to convert MQTT messages to MIDI messages",
   "main": "src/main/main.js",
   "type": "commonjs",
@@ -13,7 +13,10 @@
     "publish": "electron-forge publish",
     "make": "electron-forge make"
   },
-  "author": "Gregory Cowley",
+  "author": {
+    "name": "Gregory Cowley",
+    "email": "gregory@cowleystudios.com"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/gregorycowley/ixd-mqtt-to-midi.git"},
@@ -26,6 +29,10 @@
     "@electron-forge/maker-squirrel": "^7.3.0",
     "@electron-forge/maker-zip": "^7.3.0",
     "@electron-forge/plugin-auto-unpack-natives": "^7.3.0",
+    "@electron-forge/plugin-fuses": "^7.3.1",
+    "@electron-forge/plugin-webpack": "^7.3.1",
+    "@electron-forge/publisher-github": "^7.3.1",
+    "@electron/fuses": "^1.8.0",
     "electron": "^29.0.1",
     "eslint": "^8.57.0",
     "mocha": "^10.3.0"
@@ -39,32 +46,5 @@
     "material-design-lite": "^1.3.0",
     "material-icons-font": "^2.1.0",
     "mqtt": "^5.3.6"
-  },
-  "config": {
-    "forge": {
-      "packagerConfig": {},
-      "makers": [
-        {
-          "name": "@electron-forge/maker-squirrel",
-          "config": {
-            "name": "ixd-mqtt2midi"
-          }
-        },
-        {
-          "name": "@electron-forge/maker-zip",
-          "platforms": [
-            "darwin"
-          ]
-        },
-        {
-          "name": "@electron-forge/maker-deb",
-          "config": {}
-        },
-        {
-          "name": "@electron-forge/maker-rpm",
-          "config": {}
-        }
-      ]
-    }
   }
 }
