@@ -10,8 +10,8 @@ module.exports = {
     {
       name: '@electron-forge/maker-squirrel',
       config: {
-        iconUrl: 'src/icons/icon.ico',
-        setupIcon: 'src/icons/icon.ico'
+        iconUrl: './src/icons/icon.ico',
+        setupIcon: './src/icons/icon.ico'
       }
     },
     {
@@ -21,14 +21,14 @@ module.exports = {
     {
       name: '@electron-forge/maker-dmg',
       config: {
-        icon: 'src/icons/icon.icns'
+        icon: './src/icons/icon.icns'
       }
     },
     {
       name: '@electron-forge/maker-deb',
       config: {
         options: {
-          icon: 'src/icons/icon.png'
+          icon: './src/icons/icon.png'
         }
       }
     },
