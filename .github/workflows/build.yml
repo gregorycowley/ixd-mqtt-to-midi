@@ -17,15 +17,11 @@ jobs:
             architecture: arm64
           - os: windows-latest
             architecture: x64
-            target: win
           - os: macos-latest
             architecture: x64
-            target: mac
         include:
           - os: macos-latest
             architecture: arm64
-            target: mac-arm
-
     runs-on: ${{ matrix.os }}
     steps:
       - name: Github checkout
