@@ -1,11 +1,6 @@
 /* global __dirname, process */
 // Main.js
 
-// const macAddress = first();
-// console.log(macAddress);
-// const macAddresses = all();
-// console.log(macAddresses);
-
 const { app, BrowserWindow, ipcMain } = require('electron');
 const MqttConnect = require('../connect/MqttConnect');
 const MidiConnect = require('../midi/MidiConnect');
@@ -14,10 +9,11 @@ const MqttParse = require('../connect/MqttParse');
 const { first, all } = require('macaddress-local-machine');
 const path = require('node:path');
 const macAddress = first();
-require('dotenv').config();
-if ( process.env.MODE == 'development' ) {
-  const { enableReload } = require('../util/development.js')();
-}
+
+// require('dotenv').config();
+// if ( process.env.MODE == 'development' ) {
+//   const { enableReload } = require('../util/development.js')();
+// }
 
 module.exports = class MainProcess {
   mqttConnection = null;
@@ -66,11 +62,11 @@ module.exports = class MainProcess {
     });
     mainWindow.loadFile('src/ui/index.html');
 
-    if (process.env.MODE == 'development'){
-      mainWindow.webContents.openDevTools();
-    } else {
-      mainWindow.setResizable(false);
-    }
+    // if (process.env.MODE == 'development'){
+    //   mainWindow.webContents.openDevTools();
+    // } else {
+    //   mainWindow.setResizable(false);
+    // }
 
     setTimeout(() => {
       mainWindow.webContents.send('mac-address', macAddress.macAddr);

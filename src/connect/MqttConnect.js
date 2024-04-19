@@ -2,38 +2,8 @@
 
 const EventEmitter = require('node:events');
 const mqtt = require('mqtt');
-
-/**
- * Create a new MQTT client
- * 
- * 
- * Quality of Service (QoS):
- * QoS 0: At most once delivery
- * QoS 1: At least once delivery
- * QoS 2: Exactly once delivery
-    # Subscribe to test topic
-    node mqtt-cli.js sub -t test
-
-    # Publish an MQTT message
-    node mqtt-cli.js pub -t test -m 'Hello MQTT!'
- */
-
 module.exports = class MqttConnect extends EventEmitter {
   
-  
-
-  // wemos/esp-8c:aa:b5:7c:ed:47/out 
-  // wemos/esp-8c:aa:b5:7c:ed:47/in
-  // wemos/electron_app_01/out
-  // wemos/electron_app_01/in
-
-
-  // ixdstudio/esp-8c:aa:b5:7c:ed:47/out 
-  // ixdstudio/esp-8c:aa:b5:7c:ed:47/in
-  // ixdstudio/electron_app_01/out
-  // ixdstudio/electron_app_01/in
-
- 
   constructor(){
     super();
     this.client = mqtt;
@@ -44,11 +14,9 @@ module.exports = class MqttConnect extends EventEmitter {
     const protocol = 'mqtt';
     const host = '192.168.8.113';
     const port = 1883;
-
     this.topicID = 'ixdstudio';
     this.clientId = 'electron_app_01';
     this.topic = `${this.topicID}/${this.clientId }`;
-
     const QOS = 2;
     this.connectUrl = `${protocol}://${host}:${port}`;
 
@@ -62,7 +30,6 @@ module.exports = class MqttConnect extends EventEmitter {
     this.client.on('offline', this.onOffline);
     this.client.on('reconnect', this.onReconnect);
     this.client.on('end', this.onEnd);
-
 
     this.client.subscribe(`${this.topic}/in`, (err) => {
       if (!err) {
@@ -90,14 +57,7 @@ module.exports = class MqttConnect extends EventEmitter {
   };
 
   onConnect = (...args) => {
-    // console.log('Connected', args);
     this.emit('mqtt-message', this.topic, `Connected to MQTT broker ${this.connectUrl} `);
-    // this.client.subscribe(this.topic, (err) => {
-    //   if (!err) {
-    //     this.client.publish(`${this.topic}/out`, 'Hello MQTT');
-    //     this.emit('mqtt-message', this.topic, `Subscribe to ${this.topic} successful`);
-    //   }
-    // });
   };
 
   onSubscribe = ([topic], ...args) => {

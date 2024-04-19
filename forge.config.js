@@ -1,5 +1,7 @@
 const { FusesPlugin } = require('@electron-forge/plugin-fuses');
 const { FuseV1Options, FuseVersion } = require('@electron/fuses');
+const path = require('path');
+const fs = require('node:fs/promises');
 
 module.exports = {
   packagerConfig: {
@@ -54,5 +56,17 @@ module.exports = {
         prerelease: true
       }
     }
-  ]
+  ],
+  hooks: {
+    packageAfterPrune: async (_config, buildPath) => {
+      const gypPath = path.join(
+        buildPath,
+        'node_modules',
+        '@julusian/midi',
+        'build',
+        'node_gyp_bins'
+      );
+      await fs.rm(gypPath, {recursive: true, force: true});
+    }
+  }
 };
