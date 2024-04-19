@@ -15,16 +15,17 @@ jobs:
         exclude:
           - os: windows-latest
             architecture: arm64
-        include:
-          - os: macos-latest
-            architecture: x64
-            target: mac
-          - os: macos-latest
-            architecture: arm64
-            target: mac-arm
           - os: windows-latest
             architecture: x64
             target: win
+          - os: macos-latest
+            architecture: x64
+            target: mac
+        include:
+          - os: macos-latest
+            architecture: arm64
+            target: mac-arm
+
     runs-on: ${{ matrix.os }}
     steps:
       - name: Github checkout
@@ -37,8 +38,10 @@ jobs:
         with:
           python-version: '3.10'
       - run: npm i
-      - if: matrix.os == 'macos-latest'
-        run: npm install -g appdmg
+      # - if: matrix.os == 'macos-latest'
+      #   run: npm install -g appdmg
+      - name: Build app
+        run: npm run build
       - name: Publish app
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
